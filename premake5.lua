@@ -1,7 +1,7 @@
-workspace "template"
+workspace "lua"
 	configurations { "debug", "release" }
 
-project "template"
+project "lua"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"

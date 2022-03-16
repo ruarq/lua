@@ -2,6 +2,6 @@
 
 int main()
 {
-	std::cout << "Hello premake5_template!\n";
+	std::cout << "Hello lua!\n";
 	return 0;
 }
