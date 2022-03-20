@@ -15,7 +15,6 @@ public:
 		Invalid,
 
 		// ASCII token types
-		// TODO(ruarq): What is '~=' and what does it do?
 
 		LParen,			///< (
 		RParen,			///< )
@@ -42,6 +41,7 @@ public:
 		Assign,			///< =
 
 		Equal,			///< ==
+		NotEqual,		///< ~=
 		Less,			///< <
 		Greater,		///< >
 		LessEqual,		///< <=
@@ -115,6 +115,20 @@ public:
 	std::string literal;
 };
 
+/**
+ * @brief Get the Keyword Type object
+ * 
+ * @param literal The literal of the token
+ * @return Token::Type 
+ */
+Token::Type GetKeywordType(const std::string &literal);
+
+/**
+ * @brief Convert a Token::Type to a string
+ * 
+ * @param type The Token::Type instance
+ * @return const char* 
+ */
 constexpr const char* ToString(const Token::Type type)
 {
 	switch (type)

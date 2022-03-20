@@ -62,9 +62,16 @@ L_NextToken:
 				literal += Consume();
 			}
 
-			// TODO(ruarq): Get Token::Type of literal
+			const Token::Type type = GetKeywordType(literal);
 
-			return Token(Token::Type::Identifier, literal);
+			if (type == Token::Type::Identifier)
+			{
+				return Token(Token::Type::Identifier, literal);
+			}
+			else
+			{
+				return type;
+			}
 		}
 		break;
 
@@ -204,12 +211,12 @@ L_NextToken:
 
 			return Token::Type::Slash;
 
-		// ~, TODO(ruarq): Add '~=' thing
+		// ~, ~=
 		case '~':
 			if (Current() == '=')
 			{
 				++current;
-				// return Token::Type::ThatThing;
+				return Token::Type::NotEqual;
 			}
 
 			return Token::Type::BitFlip;
