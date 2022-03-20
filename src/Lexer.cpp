@@ -93,7 +93,7 @@ L_NextToken:
 			std::string literal;
 			const char quote = c;
 
-			while (!Eof() && Current() != '"' && Current() != '\'' && Current() != '\n')
+			while (!Eof() && Current() != quote && Current() != '\n')
 			{
 				literal += Consume();
 			}
