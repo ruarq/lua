@@ -91,15 +91,17 @@ L_NextToken:
 		case '"':
 		case '\'': {
 			std::string literal;
-			while (!Eof() && Current() != '"' && Current() != '\'')
+			const char quote = c;
+
+			while (!Eof() && Current() != '"' && Current() != '\'' && Current() != '\n')
 			{
 				literal += Consume();
 			}
 
-			const char quote = Consume();
-			if (c != quote)
+			if (Consume() != quote)
 			{
 				// TODO(ruarq): Diagnostics
+				printf("Error: unterminated string.\n");
 			}
 
 			return Token(Token::Type::String, literal);
