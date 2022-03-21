@@ -2,6 +2,8 @@
 #include <fstream>
 
 #include "Lexer.hpp"
+#include "Parser.hpp"
+#include "Debug.hpp"
 
 using namespace Lua;
 
@@ -33,13 +35,10 @@ int main(int argc, char **argv)
 
 	const std::string source = ReadFile(argv[1]);
 	Lexer lexer(source);
-	
-	Token token;
-	do
-	{
-		token = lexer.NextToken();
-		std::cout << ToString(token.type) << " <> '" << token.literal << "'\n";
-	} while (token.type != Token::Type::Eof && token.type != Token::Type::Invalid);
+	Parser parser(lexer);
+	Ast::Node *ast = parser.Run();
+	Debug(ast);
+	delete ast;
 
 	return 0;
 }
